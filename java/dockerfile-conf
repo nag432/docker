@@ -1,0 +1,25 @@
+# THIS DOCKER FILE WAS DEVELOPED BY ASSISTANZ NETWORKS
+
+# SPECIFY THE CONTAINER IMAGE
+FROM nagesh/tomcat
+
+# COPY THE JOBSERVER CONF INSTALLATION FILES INTO THE CONTAINER
+ADD ./setup-env-conf c:/source
+
+RUN powershell.exe -command \
+
+# COPYING CUSTOMIZE TOMCAT-JOBSERVER FILES TO C drive
+Copy-Item c:/source/conf/* -Destination c:/tomcat/conf -Recurse; \
+
+
+# SETTING UP ENVIRONMENT PATH VARIABLES FOR JRE & JDK FOLDERS
+./source/Environmentvariable.ps1; \
+
+# Installing Tomcat service
+cmd.exe /c c:/source/tomcatservice.bat; \
+
+# SET TOMCAT SERVICE TO RUN UNDER LOCAL SYSTEM ACCOUNT
+sc.exe config tomcat8 obj=LocalSystem start=auto; \
+
+# REMOVE TOMCAT SETUP FILES FROM SOURCE DIRECTORY
+cmd.exe /c rd /S /Q c:\source
