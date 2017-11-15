@@ -1,36 +1,70 @@
-<?xml version='1.0' encoding='utf-8'?>
-<!--
-  Licensed to the Apache Software Foundation (ASF) under one or more
-  contributor license agreements.  See the NOTICE file distributed with
-  this work for additional information regarding copyright ownership.
-  The ASF licenses this file to You under the Apache License, Version 2.0
-  (the "License"); you may not use this file except in compliance with
-  the License.  You may obtain a copy of the License at
+<?xml version="1.0" encoding="UTF-8"?>
 
-      http://www.apache.org/licenses/LICENSE-2.0
+<!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements. See the NOTICE file distributed with this work for additional information regarding copyright ownership. The ASF licenses this file to You under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. -->
 
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
--->
 <!-- The contents of this file will be loaded for each web application -->
-<Context>
 
-    <!-- Default set of monitored resources. If one of these changes, the    -->
-    <!-- web application will be reloaded.                                   -->
-    <WatchedResource>WEB-INF/web.xml</WatchedResource>
-    <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
+-<Context>
 
-    <!-- Uncomment this to disable session persistence across Tomcat restarts -->
-    <!--
-    <Manager pathname="" />
-    -->
+<!-- Default set of monitored resources -->
 
-    <!-- Uncomment this to enable Comet connection tacking (provides events
-         on session expiration as well as webapp lifecycle) -->
-    <!--
-    <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" />
-    -->
+
+<WatchedResource>WEB-INF/web.xml</WatchedResource>
+
+<!-- COMPAS CatalogServer Server DB settings -->
+
+
+<ResourceLink type="javax.sql.DataSource" name="jdbc/catAdmin" global="jdbc/catAdmin"/>
+
+<ResourceLink type="javax.sql.DataSource" name="jdbc/catUser" global="jdbc/catUser"/>
+
+<ResourceLink type="javax.sql.DataSource" name="jdbc/catMaster" global="jdbc/catMaster"/>
+
+<ResourceLink type="javax.sql.DataSource" name="jdbc/catAMS" global="jdbc/catAMS"/>
+
+<ResourceLink type="javax.sql.DataSource" name="jdbc/catAudit" global="jdbc/catAudit"/>
+
+<!-- End of COMPAS CatalogServer Server DB settings -->
+
+
+<Parameter name="AUTH_SERVICE_FEED" value="http://localhost/authserver/rest" override="true"/>
+
+<Parameter name="DMS_SERVICE_FEED" value="http://localhost" override="true"/>
+
+<Parameter name="maxQSelectFavourites" value="20" override="true"/>
+
+<Parameter name="SOLR_SERVICE_FEED" value="http://localhost:8983/solr/" override="true"/>
+
+<Parameter name="SOLR_CATALOG_FEED" value="catalogsearch" override="true"/>
+
+<Parameter name="SOLR_TIKA_FEED" value="tika" override="true"/>
+
+<Parameter name="SPEEDFAX_LOC" value="D://solr-5.3.1 - CatalogSearch/solr-5.3.1/example/exampledocs/PDF/SpeedFax/" override="true"/>
+
+<Parameter name="MIME_SERVICE_FEED" value="https://q2.compasquality.siemens-info.com/DMS_Transaction/CatalogProduct/" override="true"/>
+
+<Parameter name="PDF_GENARATION_PATH" value="D://CatalogProduct//" override="true"/>
+
+<Parameter name="MIME_SERVICE_FEED_COLLATERAL" value="https://q2.compasquality.siemens-info.com/MIMES" override="true"/>
+
+<Parameter name="NOTIFICATIONURL" value="http://localhost/Notification/services/sendMailPInfo" override="true"/>
+
+<Parameter name="SUBMITTAL_NOTIFICATION_URL" value="http://localhost/Notification/services/sendMailSubmittalInfo" override="true"/>
+
+<Parameter name="FIRST_ALTERNATIVE" value="TYZ:" override="true"/>
+
+<Parameter name="SECOND_ALTERNATIVE" value="US2:" override="true"/>
+
+<!-- Uncomment this to disable session persistence across Tomcat restarts -->
+
+
+<!-- <Manager pathname="" /> -->
+
+
+<!-- Uncomment this to enable Comet connection tacking (provides events on session expiration as well as webapp lifecycle) -->
+
+
+<!-- <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" /> -->
+
+
 </Context>
