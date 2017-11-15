@@ -1,0 +1,15 @@
+# THIS DOCKER FILE WAS DEVELOPED BY ASSISTANZ NETWORKS
+
+# SPECIFY THE CONTAINER IMAGE
+FROM catserver-conf
+
+# COPY THE JOBSERVER CONF INSTALLATION FILES INTO THE CONTAINER
+ADD ./CatServer c:/source
+
+RUN powershell.exe -command \
+
+# COPYING CUSTOMIZE TOMCAT-JOBSERVER FILES TO C drive
+Copy-Item c:/source/webapps/* -Destination c:/tomcat/webapps -Recurse; \
+
+# REMOVE TOMCAT SETUP FILES FROM SOURCE DIRECTORY
+cmd.exe /c rd /S /Q c:\source
